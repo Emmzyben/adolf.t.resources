@@ -1,0 +1,317 @@
+/* styles/reset.css */
+
+.span{
+    font-size:30px;cursor:pointer;
+}
+#header{
+    width: auto;
+    background-color:#ffffff;
+    height: 90px;
+    display: none;
+    padding: 20px;
+    border-bottom: 1px solid #2a0134;
+
+}
+#span{
+    border: 1px solid #68040a;
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    padding: 7px;
+}
+#ul{
+  background-color: #ffffff;
+   text-align: center;padding: 5px;
+}
+
+
+#custom-container {
+    background-color: #ffffff;
+    border-radius: 2px;
+    height: 200px;
+  }
+  #upul{
+    position: absolute;
+    top: 3%;
+    right: 2%;
+font-size: small;
+  }
+
+#navs{
+  position: sticky;
+  top: 0;
+  background-color: #2a0134;
+  z-index: 1000;
+}
+#hover{
+  margin-right: 30px;
+}
+  #hover:hover{
+border: 1px solid white;
+padding: 5px;
+border-radius: 8px;
+font-size: large;
+  }
+  
+  @media screen and (max-width: 900px) {
+    #header {
+      display: block;
+      
+  }
+  #navs{
+    display: none;
+  }
+    #custom-container {
+        display: none;
+    }
+    #div1{
+      display: flex;
+      flex-direction: column;
+    }
+    #div1> div{
+      margin-right: 20px;
+      padding: 30px;
+    }
+}  
+
+
+ul li{
+  list-style-type:disc;
+  padding-top: 20px;
+  color: #001233;
+  font-size: 14px;
+}
+
+
+
+
+
+
+#footz{
+  background-image: url(/info.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+
+.spinning-circle {
+  width: 100px;
+  height: 100px;
+  border: 8px solid #91298f;
+  border-top: 8px solid #e76f3c;
+  border-radius: 50%;
+  animation: spin 2s linear infinite;
+  z-index: -1000;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+#full{
+
+ background-image: url(images/pic10.jpg);
+ background-size: 450px;
+ background-repeat: repeat;
+ z-index: -1;
+}
+
+.full-width-image {
+  width: 50%;
+  height: 350px;
+  margin-left: 25%;
+}
+
+#full {
+  position: relative;
+}
+
+.previous-button,
+.next-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.previous-button {
+  left: 10px;
+}
+
+.next-button {
+  right: 10px;
+}
+
+#covers{
+  background-color:#2a013470;
+}
+#button:hover{
+background-color: #FF595A;
+}
+@media screen and (max-width: 900px) {
+  .full-width-image {
+    width: 100%;
+    height: 350px;
+    margin-left: 0;
+  }
+}
+
+#intro{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: space-around;
+  margin-top: 30px;
+}
+
+#intro > div{
+  margin-right: 40px;
+}
+#div1{
+  width: 50%;
+}
+#div2{
+  width: 40%;
+}
+#newul {
+padding-left: 30px;
+}
+#color{
+  color:black;
+  font-size: 16px;
+}
+
+@media screen and (max-width: 900px) {
+  #intro > div{
+  width: 100%;
+  margin-top: 0;
+  margin-left: 10px;
+  margin-right: 10px;
+  }
+  #intro{
+    flex-direction: column;
+  }
+  #picture{
+    display: none;
+  }
+
+}
+.full-width-container {
+  margin-top: -60px;
+}
+
+#dropdownz > li{
+list-style-type: none;
+font-size: small;
+border-bottom: 1px solid wheat;
+}
+
+.sub-menu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+}
+
+.sub-menu.open {
+  max-height: 1000px; 
+}
+
+
+/* Header style */
+.header {
+    padding: 10px;
+    background-color: #2a0134;
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Paragraph style */
+.paragraph {
+    padding: 10px;
+}
+
+/* List style */
+.list {
+    padding: 10px;
+    margin-top: -15px;
+}
+
+.list ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+
+
+/* Contact style */
+.contact {
+    font-weight: bold;
+}
+
+/* Image style */
+.image {
+    height: 300px;
+    width: 500px;
+    margin-bottom: 20px;
+}
+
+
+.purple-bold {
+    color: purple;
+    font-weight: bold;
+}
+
+
+.loader {
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+#ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 10px;
+}
+
+#ul li {
+    display: block;
+    margin-right: 20px;
+}
+
+#span {
+    cursor: pointer;
+}
+
+#ul {
+    height: 0;
+    overflow: hidden;
+    transition: height 0.3s ease;
+}

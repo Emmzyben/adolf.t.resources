@@ -1,0 +1,348 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verification</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="index.css">
+
+
+    <style>
+        
+
+        .content-container {
+            padding: 20px;
+            flex-grow: 1;
+        }
+
+        h5 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2a0134;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .form-container {
+            display: flex;
+            justify-content: center;
+            padding-bottom: 70px;
+        }
+
+        .form {
+            width: 100%;
+            max-width: 550px;
+            border: 1px solid #321132;
+            padding: 40px;
+            border-radius: 8px;
+            margin: 5px;
+        }
+
+        .form label {
+            font-size: 16px;
+            font-weight: bold;
+            color: #321132;
+            margin-bottom: 10px;
+        }
+
+        .form input[type="text"],
+        .form input[type="date"],
+        .form input[type="number"] {
+            width: 100%;
+            border: 1px solid #c5a3c5;
+            background-color: #fff;
+            padding: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #2a1529;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .form input[type="text"]:focus,
+        .form input[type="date"]:focus,
+        .form input[type="number"]:focus {
+            border-color: #91298f;
+            box-shadow: 0 0 5px rgba(145, 41, 143, 0.5);
+        }
+
+        .form button {
+            cursor: pointer;
+            background-color: #2a0134;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            outline: none;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .form button:hover {
+            background-color: #321132;
+            box-shadow: 0 0 5px rgba(145, 41, 143, 0.5);
+        }
+        .nav-container {
+  position: relative;
+  display: inline-block;
+}
+
+#dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #2a0134;
+  padding: 10px 0;
+  width: 300px;
+  text-align: center;
+}
+
+#dropdown a:hover {
+  background-color: grey;
+}
+
+#dropdown a {
+  border-bottom: 1px solid white;
+  list-style-type: none;
+}
+
+#dropdown a {
+  color: white;
+  display: block;
+  font-weight: lighter;
+  padding-bottom: 10px;
+}
+
+#hoverer {
+  cursor: pointer;
+}
+
+/* Show the dropdown when either the "Services" link or the dropdown itself is hovered */
+#hoverer:hover + #dropdown,
+#dropdown:hover {
+  display: block;
+}
+    </style>
+</head>
+<body>
+  <header class="text-gray-600 body-font w-full z-50">
+    <div class="title-font font-medium text-gray-900" id="custom-container" style="height: 80px;">
+      <div style="text-align: left;">
+        <img src="images/logo.png" width="150px" style="margin-left: 4%;" />
+        <h1 class="text-[purple] cursor-pointer" style="font-size: 13px; padding-left: 20px;">Adolph T. Resources Nigeria Limited</h1>
+      </div>
+  
+      <div id="upul">
+        <p class="text-gray-900 font-bold cursor-pointer">Email: adolph.t.resources@gmail.com</p>
+        <p class="text-gray-900 font-bold cursor-pointer">Tel1: +234 (0) 803 579 4886<br /> Tel2: +234 (0) 703 486 7802</p>
+      </div>
+    </div>
+  
+    <div id="header" >
+      <div style="text-align: left;">
+        <img src="images/logo.png" width="80px" style="margin-left: 10%;" />
+        <h1 class="text-[purple] cursor-pointer" style="font-size: 13px; padding-left: 20px;">Adolph T. Resources Nigeria Limited</h1>
+      </div>
+      <span id="span" onclick="toggleMenu()">&#9776;</span>
+    </div>
+  
+    <div>
+        <ul id="ul">
+            <li><a class="hover:text-[#fe5000] cursor-pointer text-[#2a0134]" href="index.html">Home</a></li>
+            <li><a class="hover:text-[#fe5000] cursor-pointer text-[#2a0134]" href="about.html">About</a></li>
+            <li><a class="hover:text-[#fe5000] cursor-pointer text-[#2a0134]" href="gallery.html">Gallery</a></li>
+            <li><a class="hover:text-[#fe5000] cursor-pointer text-[#2a0134]" href="updates.html">Updates</a></li>
+            <li><a class="hover:text-[#fe5000] cursor-pointer text-[#2a0134]" href="certificate-verification.html" onclick="closeMenu()">Certificate verification</a></li>
+            <li>
+                <a href="/contact">
+                    <button class="items-center bg-[#FF595A] border-0 py-2 px-6 focus:outline-none 
+                    hover:bg-[#fe5000] rounded text-[#001233] mt-4 md:mt-0 font-bold">Contact us</button>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <script>
+
+      const toggleMenu = () => {
+          const menu = document.getElementById("ul");
+          menu.style.height = menu.style.height === "0px" ? "auto" : "0px";
+      };
+      
+      const closeMenu = () => {
+          const menu = document.getElementById("ul");
+          menu.style.height = "0px";
+      };
+        </script>
+  </header>
+
+  <!-- nav -->
+
+  <nav id="navs" class="md:ml-auto items-center text-base justify-center text-[#ffffffd4] font-bold" style="text-align: center; padding: 8px;">
+    <a class="mr-5 cursor-pointer" id="hover" href="index.html">Home</a>
+    <a class="mr-5 cursor-pointer" id="hover" href="about.html">About</a>
+      <div class="nav-container">
+          <a class="mr-5 cursor-pointer" id="hoverer" onmouseenter="openDropdown()" onmouseleave="closeDropdown()">Services</a>
+          <ul id="dropdown">
+            <a href="scafolding.html">Scaffolding</a>
+            <a href="training.html">Scaffolding training</a>
+            <a href="safehouse.html">Safehouse pressurized habitat</a>
+            <a href="maintanance.html">Maintenance and Construction Support</a>
+            <a href="renting.html">Renting of equipment and procurement.</a>
+          </ul>
+        </div>
+    
+    
+    <a class="mr-5 cursor-pointer" id="hover" href="gallery.html">Gallery</a>
+    <a class="mr-5 cursor-pointer" id="hover" href="updates.html">Updates</a>
+    <a class="mr-5 cursor-pointer" id="hover" href="certificate-verification.html">Certificate verification</a>
+  
+    <a href="contact.html">
+      <button class="bg-[#FF595A] border-0 py-2 px-6 focus:outline-none hover:text-[white] rounded text-[#001233] font-bold">Contact us</button>
+    </a>
+  </nav>
+
+<!-- hero -->
+<div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+  <div class="grid gap-10 lg:grid-cols-2">
+    <div class="flex flex-col justify-center md:pr-8 xl:pr-0 lg:max-w-lg">
+      <div class="max-w-xl mb-6" >
+        <h2 class="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none" >
+          Introducing!<br class="hidden md:block" />
+        
+        </h2>
+        <p class="text-base text-gray-700 md:text-lg">
+          Our Certificate Verification portal.
+For Students who have successfully completed our training, you can verify your certficate on this portal from any part of the world
+        </p>
+      </div>
+      <div>
+        <a href="/" aria-label="" class="inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">
+          Go to form below to continue
+          <svg class="inline-block w-3 ml-2" fill="currentColor" viewBox="0 0 12 12">
+            <path d="M9.707,5.293l-5-5A1,1,0,0,0,3.293,1.707L7.586,6,3.293,10.293a1,1,0,1,0,1.414,1.414l5-5A1,1,0,0,0,9.707,5.293Z"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div class="flex items-center justify-center -mx-4 lg:pl-8" id="picture">
+      <div class="flex flex-col items-end px-3">
+        <img
+          class="object-cover mb-6 rounded shadow-lg h-28 sm:h-48 xl:h-56 w-28 sm:w-48 xl:w-56"
+          src="images/picz.jpg"
+          alt=""
+        />
+        <img class="object-cover w-20 h-20 rounded shadow-lg sm:h-32 xl:h-40 sm:w-32 xl:w-40" src="https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" alt="" />
+      </div>
+      <div class="px-3">
+        <img class="object-cover w-40 h-40 rounded shadow-lg sm:h-64 xl:h-80 sm:w-64 xl:w-80"  src="images/verify.jpg" alt="" />
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- content -->
+
+
+<h1 style="text-align:center; font-size: 20px; margin-bottom: 40px;color: #321132;" >Fill in the required fields</h1>
+<div class="form-container">
+    <div class="form">
+        <form>
+            <div class="flex flex-wrap">
+                <div class="w-full sm:w-1/2">
+                    <div class="mb-5">
+                        <label for="fName" class="mb-3 block text-base font-medium text-#321132">First Name</label>
+                        <input type="text" name="fName" id="fName" placeholder="First Name" class="w-full rounded-md border border-#c5a3c5 bg-white py-3 px-6 text-base font-medium text-#2a1529 outline-none focus:border-#91298f focus:shadow-md" />
+                    </div>
+                </div>
+                <div class="w-full sm:w-1/2">
+                    <div class="mb-5">
+                        <label for="lName" class="mb-3 block text-base font-medium text-#321132">Last Name</label>
+                        <input type="text" name="lName" id="lName" placeholder="Last Name" class="w-full rounded-md border border-#c5a3c5 bg-white py-3 px-6 text-base font-medium text-#2a1529 outline-none focus:border-#91298f focus:shadow-md" />
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-wrap">
+                <div class="w-full sm:w-1/2">
+                    <div class="mb-5">
+                        <label for="date" class="mb-3 block text-base font-medium text-#321132">Date of issuance</label>
+                        <input type="date" name="date" id="date" class="w-full rounded-md border border-#973b97 bg-white py-3 px-6 text-base font-medium text-#2a1529 outline-none focus:border-#91298f focus:shadow-md" />
+                    </div>
+                </div>
+                <div class="w-full sm:w-1/2">
+                    <div class="mb-5">
+                        <label for="time" class="mb-3 block text-base font-medium text-#321132">Unique Certificate number</label>
+                        <input type="number" name="number" id="time" class="w-full rounded-md border border-#c5a3c5 bg-white py-3 px-6 text-base font-medium text-#2a1529 outline-none focus:border-#91298f focus:shadow-md" />
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button class="hover:shadow-form rounded-md bg-#2a0134 py-3 px-8 text-center text-base font-semibold text-white outline-none">Verify</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+<!-- footer -->
+<footer class="text-gray-600 body-font bg-[#2a0134]">
+    <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
+      <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
+        <span class="ml-3 text-xl text-[#ffffff]">Adolph T. Resources</span> 
+      </a>
+      <p class="text-sm text-[#ffffff] sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">
+        adolph.t.resources@gmail.com 
+        <span style="border-right: 2px solid white; height: 70px;"></span>
+        <a class="text-#ffffff ml-1" rel="noopener noreferrer" target="_blank"></a> 
+        Tel: +234 (0) 803 579 4886, +234 (0) 703 486 7802
+      </p>
+      <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
+        <a class="text-gray-500">
+          <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+            <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+          </svg>
+        </a>
+        <a class="ml-3 text-gray-500">
+          <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+            <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+          </svg>
+        </a>
+        <a class="ml-3 text-gray-500">
+          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+            <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
+          </svg>
+        </a>
+        <a class="ml-3 text-gray-500">
+          <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" class="w-5 h-5" viewBox="0 0 24 24">
+            <path stroke="none" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
+            <circle cx="4" cy="4" r="2" stroke="none"></circle>
+          </svg>
+        </a>
+      </span>
+    </div>
+  </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>
