@@ -209,7 +209,7 @@
             const message = document.getElementById('message').value;
     
             // Use <br> for line breaks in the email body
-            const mailtoLink = `mailto:adolph.t.resources@gmail.com?subject=Form%20Submission&body=FullName:${fullName}............Telephone:${telephone}........Email:${emailAddress}......Message:${message}`;
+            const mailtoLink = `mailto:adolph.t.resources@gmail.com?subject=Form%20Submission&body=FullName:${fullName}|Telephone:${telephone}|Email:${emailAddress}|Message:${message}`;
     
             window.location.href = encodeURI(mailtoLink);
         });
