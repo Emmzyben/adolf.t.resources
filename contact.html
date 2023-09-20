@@ -208,7 +208,7 @@
             const emailAddress = document.getElementById('emailAddress').value;
             const message = document.getElementById('message').value;
     
-            const mailtoLink = `mailto:adolph.t.resources@gmail.com?subject=Form Submission&body=Full%20Name:%20${fullName}%0D%0ATelephone:%20${telephone}%0D%0AEmail:%20${emailAddress}%0D%0AMessage:%20${message}`;
+            const mailtoLink = `mailto:adolph.t.resources@gmail.com?subject=Form Submission&body=FullName:${fullName},Telephone:${telephone};Email:${emailAddress},Message:${message}`;
     
             window.location.href = encodeURI(mailtoLink);
         });
