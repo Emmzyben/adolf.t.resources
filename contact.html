@@ -208,11 +208,13 @@
             const emailAddress = document.getElementById('emailAddress').value;
             const message = document.getElementById('message').value;
     
-            const mailtoLink = `mailto:adolph.t.resources@gmail.com?subject=Form Submission&body=FullName:${fullName},Telephone:${telephone};Email:${emailAddress},Message:${message}`;
+            // Use <br> for line breaks in the email body
+            const mailtoLink = `mailto:adolph.t.resources@gmail.com?subject=Form%20Submission&body=FullName:${fullName}<br>Telephone:${telephone}<br>Email:${emailAddress}<br>Message:${message}`;
     
             window.location.href = encodeURI(mailtoLink);
         });
     </script>
+    
           
     </div>
 </section>
