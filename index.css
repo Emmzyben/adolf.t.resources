@@ -317,3 +317,39 @@ border-bottom: 1px solid wheat;
     overflow: hidden;
     transition: height 0.3s ease;
 }
+.image-container{
+  padding: 40px;
+}
+.hover-text-fe5000 {
+  color: #fe5000;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.text-2a0134 {
+  color: #2a0134;
+}
+
+.dropdown-item {
+  cursor: pointer;
+  color: #2a0134;
+}
+
+.dropdown-item:hover {
+  color: #fe5000;
+}
+
+.sub-menu {
+  display: none;
+  list-style-type: none;
+  padding: 0;
+}
+
+.sub-menu.open {
+  display: block;
+}
+#hovs:hover{
+  color: #fe5000;
+}

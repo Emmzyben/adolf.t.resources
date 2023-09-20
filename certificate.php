@@ -37,13 +37,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     if ($result->num_rows > 0) {
         // User already exists, display a message
+        echo '<div style="font-size :25px;color:purple;">';
         echo "Student with the same information already exists.";
-        echo '<script>setTimeout(function() { window.location = "admin.html"; }, 2000);</script>';
+        echo '</div>';
+        echo '<script>setTimeout(function() { window.location = "min.php"; }, 2000);</script>';
     } else {
         // User doesn't exist, proceed with inserting data
 
         // Generate a random number and concatenate it with $date_of_issuance
-        $last_insert_id = mt_rand(10000, 99999) . $date_of_issuance;
+        $last_insert_id = mt_rand(10000, 99999) ;
 
         // Prepare an SQL INSERT statement
         $sql = "INSERT INTO certificate_registration (first_name, middle_name, last_name, address, city, state, country, date_of_issuance, phone_number1, phone_number2, skill_learnt, hash_field) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -57,8 +59,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Execute the statement
             if ($stmt->execute()) {
-                echo "Data inserted successfully. Registration Number: " . htmlspecialchars($last_insert_id, ENT_QUOTES, 'UTF-8');
-                echo '<script>setTimeout(function() { window.location = "admin.html"; }, 2000);</script>';
+                echo '<div style="font-size :25px;color:purple;">';
+                echo "Certificate successfully registered. Registration Number:" . htmlspecialchars($last_insert_id, ENT_QUOTES, 'UTF-8');
+                echo '<br>Redirecting..........';
+                echo '</div>';
+                echo '<script>setTimeout(function() { window.location = "min.php"; }, 6000);</script>';
             } else {
                 echo "Error inserting data: " . $stmt->error;
             }

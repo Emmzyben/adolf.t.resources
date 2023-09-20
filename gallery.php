@@ -1,3 +1,47 @@
+<?php
+// Database connection details
+$servername = 'localhost';
+$username = "root";
+$password = "";
+$database = "adolph.t database";
+
+// Create a connection
+$conn = new mysqli($servername, $username, $password, $database);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// SQL query to retrieve images and descriptions in descending order
+$sql = "SELECT image_path, image_description FROM image_gallery ORDER BY image_id DESC";
+$result = $conn->query($sql);
+
+// Generate HTML for displaying images and descriptions
+$html = '';
+
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $imagePath = $row['image_path'];
+        $imageDescription = $row['image_description'];
+
+        // Generate HTML for each image and description
+        $html .= '<div class="image-container" style="border:1px solid black;margin:20px;border-radius:10px">';
+        $html .= '<img src="' . $imagePath . '" alt="' . $imageDescription . '" style="height: 270px; width: 500px;">';
+        $html .= '<p  style="margin-top:20px">Description: ' . $imageDescription . '</p>';
+        $html .= '</div>';
+    }
+} else {
+    $html = '<p>No images found.</p>';
+}
+
+// Close the database connection
+$conn->close();
+?>
+
+
+
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -74,19 +118,45 @@
         </div>
       
         <div>
-          <ul id="ul">
-            <li><a class="hover:text-[#fe5000] cursor-pointer text-[#2a0134]" href="index.html">Home</a></li>
-            <li><a class="hover:text-[#fe5000] cursor-pointer text-[#2a0134]" href="about.html">About</a></li>
-            <li><a class="hover:text-[#fe5000] cursor-pointer text-[#2a0134]" href="gallery.html">Gallery</a></li>
-            <li><a class="hover:text-[#fe5000] cursor-pointer text-[#2a0134]" href="updates.html">Updates</a></li>
-            <li><a class="hover:text-[#fe5000] cursor-pointer text-[#2a0134]" href="certificate-verification.html" onclick="closeMenu()">Certificate verification</a></li>
-            <li>
-                <a href="contact.html">
-                    <button class="items-center bg-[#FF595A] border-0 py-2 px-6 focus:outline-none 
-                    hover:bg-[#fe5000] rounded text-[#001233] mt-4 md:mt-0 font-bold">Contact us</button>
-                </a>
-            </li>
-        </ul>
+        <ul id="ul">
+                <li><a class="hover:text-[#fe5000] cursor-pointer text-[#2a0134]" href="index.html">Home</a></li>
+                <li><a class="hover:text-[#fe5000] cursor-pointer text-[#2a0134]" href="about.html">About</a></li>
+                <li class="dropdown-item">
+                  Services
+                  <ul class="sub-menu">
+                    <li><a id="hovs" href='scafolding.html'>Scaffolding</a></li>
+                    <li><a id="hovs" href='training.html'>Scaffolding training</a></li>
+                    <li><a id="hovs" href='safehouse.html'>Safehouse pressurized habitat</a></li>
+                    <li><a id="hovs" href='maintanance.html'>Maintenance and Construction Support</a></li>
+                    <li><a id="hovs" href='renting.html'>Renting of equipment and procurement</a></li>
+                  </ul>
+                </li>
+                <script>function toggleSubMenu() {
+                  const subMenu = document.querySelector('.sub-menu');
+                  subMenu.classList.toggle('open');
+                }
+                
+                function handleSubMenuItemClick() {
+                  closeMenu(); // Call closeMenu when a submenu item is clicked
+                }
+                
+                document.querySelector('.dropdown-item').addEventListener('click', toggleSubMenu);
+                const subMenuLinks = document.querySelectorAll('.sub-menu a');
+                
+                subMenuLinks.forEach((link) => {
+                  link.addEventListener('click', handleSubMenuItemClick);
+                });
+                </script>
+                <li><a class="hover:text-[#fe5000] cursor-pointer text-[#2a0134]" href="gallery.php">Gallery</a></li>
+                <li><a class="hover:text-[#fe5000] cursor-pointer text-[#2a0134]" href="updates.php">Updates</a></li>
+                <li><a class="hover:text-[#fe5000] cursor-pointer text-[#2a0134]" href="certificate-verification.html" onclick="closeMenu()">Certificate verification</a></li>
+                <li>
+                    <a href="contact.html">
+                        <button class="items-center bg-[#FF595A] border-0 py-2 px-6 focus:outline-none 
+                        hover:bg-[#fe5000] rounded text-[#001233] mt-4 md:mt-0 font-bold">Contact us</button>
+                    </a>
+                </li>
+            </ul>
         </div>
       </header>
 
@@ -108,8 +178,8 @@
         </div>
         
         
-        <a class="mr-5 cursor-pointer" id="hover" href="gallery.html">Gallery</a>
-        <a class="mr-5 cursor-pointer" id="hover" href="updates.html">Updates</a>
+        <a class="mr-5 cursor-pointer" id="hover" href="gallery.php">Gallery</a>
+        <a class="mr-5 cursor-pointer" id="hover" href="updates.php">Updates</a>
         <a class="mr-5 cursor-pointer" id="hover" href="certificate-verification.html">Certificate verification</a>
       
         <a href="contact.html">
@@ -119,17 +189,12 @@
       
 
 <!-- content -->
-<div style="height: 600px;overflow: auto;" id="body">
-
-    <div class="loader">
- _
-    </div>
-    coming soon.....
-    <script src="script.js"></script>
-
-
-
+<div class="image-gallery" style="display: flex; flex-direction: row; flex-wrap: wrap;">
+    <?php echo $html; ?>
 </div>
+
+
+
 
 
 
@@ -186,17 +251,27 @@
     </div>
   </footer>
   <script>
+let isMenuOpen = false;
 
-    const toggleMenu = () => {
-        const menu = document.getElementById("ul");
-        menu.style.height = menu.style.height === "0px" ? "auto" : "0px";
-    };
+const toggleMenu = () => {
+    const menu = document.getElementById("ul");
     
-    const closeMenu = () => {
-        const menu = document.getElementById("ul");
+    if (!isMenuOpen) {
+        menu.style.height = "auto";
+        isMenuOpen = true;
+    } else {
         menu.style.height = "0px";
-    };
-      </script>
+        isMenuOpen = false;
+    }
+};
+
+const closeMenu = () => {
+    const menu = document.getElementById("ul");
+    menu.style.height = "0px";
+    isMenuOpen = false;
+};
+</script>
+
     <script src="index.js"></script>
 </body>
 </html>

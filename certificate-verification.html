@@ -1,3 +1,5 @@
+
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -157,8 +159,34 @@
       <ul id="ul">
         <li><a class="hover:text-[#fe5000] cursor-pointer text-[#2a0134]" href="index.html">Home</a></li>
         <li><a class="hover:text-[#fe5000] cursor-pointer text-[#2a0134]" href="about.html">About</a></li>
-        <li><a class="hover:text-[#fe5000] cursor-pointer text-[#2a0134]" href="gallery.html">Gallery</a></li>
-        <li><a class="hover:text-[#fe5000] cursor-pointer text-[#2a0134]" href="updates.html">Updates</a></li>
+        <li class="dropdown-item">
+          Services
+          <ul class="sub-menu">
+            <li><a id="hovs" href='scafolding.html'>Scaffolding</a></li>
+            <li><a id="hovs" href='training.html'>Scaffolding training</a></li>
+            <li><a id="hovs" href='safehouse.html'>Safehouse pressurized habitat</a></li>
+            <li><a id="hovs" href='maintanance.html'>Maintenance and Construction Support</a></li>
+            <li><a id="hovs" href='renting.html'>Renting of equipment and procurement</a></li>
+          </ul>
+        </li>
+        <script>function toggleSubMenu() {
+          const subMenu = document.querySelector('.sub-menu');
+          subMenu.classList.toggle('open');
+        }
+        
+        function handleSubMenuItemClick() {
+          closeMenu(); // Call closeMenu when a submenu item is clicked
+        }
+        
+        document.querySelector('.dropdown-item').addEventListener('click', toggleSubMenu);
+        const subMenuLinks = document.querySelectorAll('.sub-menu a');
+        
+        subMenuLinks.forEach((link) => {
+          link.addEventListener('click', handleSubMenuItemClick);
+        });
+        </script>
+        <li><a class="hover:text-[#fe5000] cursor-pointer text-[#2a0134]" href="gallery.php">Gallery</a></li>
+        <li><a class="hover:text-[#fe5000] cursor-pointer text-[#2a0134]" href="updates.php">Updates</a></li>
         <li><a class="hover:text-[#fe5000] cursor-pointer text-[#2a0134]" href="certificate-verification.html" onclick="closeMenu()">Certificate verification</a></li>
         <li>
             <a href="contact.html">
@@ -169,17 +197,27 @@
     </ul>
     </div>
     <script>
-
+      let isMenuOpen = false;
+      
       const toggleMenu = () => {
           const menu = document.getElementById("ul");
-          menu.style.height = menu.style.height === "0px" ? "auto" : "0px";
+          
+          if (!isMenuOpen) {
+              menu.style.height = "auto";
+              isMenuOpen = true;
+          } else {
+              menu.style.height = "0px";
+              isMenuOpen = false;
+          }
       };
       
       const closeMenu = () => {
           const menu = document.getElementById("ul");
           menu.style.height = "0px";
+          isMenuOpen = false;
       };
-        </script>
+      </script>
+      
   </header>
 
   <!-- nav -->
@@ -199,8 +237,8 @@
         </div>
     
     
-    <a class="mr-5 cursor-pointer" id="hover" href="gallery.html">Gallery</a>
-    <a class="mr-5 cursor-pointer" id="hover" href="updates.html">Updates</a>
+    <a class="mr-5 cursor-pointer" id="hover" href="gallery.php">Gallery</a>
+    <a class="mr-5 cursor-pointer" id="hover" href="updates.php">Updates</a>
     <a class="mr-5 cursor-pointer" id="hover" href="certificate-verification.html">Certificate verification</a>
   
     <a href="contact.html">
@@ -244,7 +282,7 @@ For Students who have successfully completed our training, you can verify your c
 <h1 style="text-align:center; font-size: 20px; margin-bottom: 40px;color: #321132;" >Fill in the required fields</h1>
 <div class="form-container">
     <div class="form">
-        <form>
+        <form action="verify.php" method="post" autocomplete="off" enctype="multipart/form-data" >
             <div class="flex flex-wrap">
                 <div class="w-full sm:w-1/2">
                     <div class="mb-5">
@@ -269,7 +307,7 @@ For Students who have successfully completed our training, you can verify your c
                 <div class="w-full sm:w-1/2">
                     <div class="mb-5">
                         <label for="time" class="mb-3 block text-base font-medium text-#321132">Unique Certificate number</label>
-                        <input type="number" name="number" id="time" class="w-full rounded-md border border-#c5a3c5 bg-white py-3 px-6 text-base font-medium text-#2a1529 outline-none focus:border-#91298f focus:shadow-md" />
+                        <input type="text" name="number" id="time" class="w-full rounded-md border border-#c5a3c5 bg-white py-3 px-6 text-base font-medium text-#2a1529 outline-none focus:border-#91298f focus:shadow-md" />
                     </div>
                 </div>
             </div>

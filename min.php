@@ -1,3 +1,37 @@
+<?php
+session_start(); // Start a session
+
+// Check if the user is not logged in, redirect them to the login page
+if (!isset($_SESSION['username'])) {
+    header("Location:login.html"); // Replace 'login.php' with the actual login page URL
+    exit(); // Make sure to exit after redirection
+}
+
+// Replace these with your database connection details
+$servername = 'localhost';
+$username = "root";
+$password = "";
+$database = "adolph.t database";
+
+// Create a database connection
+$conn = new mysqli($servername , $username, $password, $database);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// SQL query to select all certificates ordered by registration_id
+$sql = "SELECT * FROM certificate_registration ORDER BY registration_id";
+
+// Execute the query
+$result = $conn->query($sql);
+
+// Check if there are any records
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,11 +83,51 @@
         #dropdown:hover {
           display: block;
         }
-        
+        #border{
+            border: 1px solid black;
+        }<style>
+    /* Define CSS styles for the container div */
+    #defaultDiv {
+        display: block;
+        margin: 20px;
+        padding: 10px;
+        background-color: #2a0134;
+        font-size: 20px;
+        color: white;
+        font-weight: bolder;
+        text-align: center;
+    }
+
+    /* Define CSS styles for the certificates container */
+    .certificates-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px; /* Add some space between certificates */
+        margin-top: 10px;
+    }
+
+    /* Define CSS styles for each certificate */
+    .certificate-details {
+        padding: 10px;
+        border: 1px solid #2a0134;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+        font-size: 13px;
+    }
+
+    /* Define a media query for smaller screens */
+    @media (max-width: 768px) {
+        .certificate-details {
+            flex: 0 0 calc(100% - 10px); /* Full width for each certificate on smaller screens */
+        }
+    }
+
+
            </style>
         </head>
         <body>
-            <header class="text-gray-600 body-font w-full z-50">
+            <header class="text-gray-600 body-font w-full z-50" style="border-bottom:10px solid #2a0134" >
                 <div class="title-font font-medium text-gray-900" id="custom-container" style="height: 80px;">
                   <div style="text-align: left;">
                     <img src="images/logo.png" width="150px" style="margin-left: 4%;" />
@@ -66,58 +140,10 @@
                   </div>
                 </div>
               
-                <div id="header" >
-                  <div style="text-align: left;">
-                    <img src="images/logo.png" width="80px" style="margin-left: 10%;" />
-                    <h1 class="text-[purple] cursor-pointer" style="font-size: 13px; padding-left: 20px;">Adolph T. Resources Nigeria Limited</h1>
-                  </div>
-                  <span id="span" onclick="toggleMenu()">&#9776;</span>
-                </div>
-              
-                <div>
-                    <ul id="ul">
-                        <li><a class="hover:text-[#fe5000] cursor-pointer text-[#2a0134]" href="index.html">Home</a></li>
-                        <li><a class="hover:text-[#fe5000] cursor-pointer text-[#2a0134]" href="about.html">About</a></li>
-                        <li><a class="hover:text-[#fe5000] cursor-pointer text-[#2a0134]" href="gallery.html">Gallery</a></li>
-                        <li><a class="hover:text-[#fe5000] cursor-pointer text-[#2a0134]" href="updates.html">Updates</a></li>
-                        <li><a class="hover:text-[#fe5000] cursor-pointer text-[#2a0134]" href="certificate-verification.html" onclick="closeMenu()">Certificate verification</a></li>
-                        <li>
-                            <a href="contact.html">
-                                <button class="items-center bg-[#FF595A] border-0 py-2 px-6 focus:outline-none 
-                                hover:bg-[#fe5000] rounded text-[#001233] mt-4 md:mt-0 font-bold">Contact us</button>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
               </header>
         
               <!-- nav -->
         
-              <nav id="navs" class="md:ml-auto items-center text-base justify-center text-[#ffffffd4] font-bold" style="text-align: center; padding: 8px;">
-                <a class="mr-5 cursor-pointer" id="hover" href="index.html">Home</a>
-                <a class="mr-5 cursor-pointer" id="hover" href="about.html">About</a>
-               
-                
-                <div class="nav-container">
-                  <a class="mr-5 cursor-pointer" id="hoverer" onmouseenter="openDropdown()" onmouseleave="closeDropdown()">Services</a>
-                  <ul id="dropdown">
-                    <a href="scafolding.html">Scaffolding</a>
-                    <a href="training.html">Scaffolding training</a>
-                    <a href="safehouse.html">Safehouse pressurized habitat</a>
-                    <a href="maintanance.html">Maintenance and Construction Support</a>
-                    <a href="renting.html">Renting of equipment and procurement.</a>
-                  </ul>
-                </div>
-                
-                
-                <a class="mr-5 cursor-pointer" id="hover" href="gallery.html">Gallery</a>
-                <a class="mr-5 cursor-pointer" id="hover" href="updates.html">Updates</a>
-                <a class="mr-5 cursor-pointer" id="hover" href="certificate-verification.html">Certificate verification</a>
-              
-                <a href="contact.html">
-                  <button class="bg-[#FF595A] border-0 py-2 px-6 focus:outline-none hover:text-[white] rounded text-[#001233] font-bold">Contact us</button>
-                </a>
-              </nav>
 
     <div class="border-b border-gray-200 dark:border-gray-700" style="border-bottom: 1px solid #2a0134;" >
         <ul class="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">
@@ -151,12 +177,37 @@
             </li>
         </ul>
     </div>
-    <div id="defaultDiv" style="display: block;">
-        <div>
-            <h1 style="padding: 10px; background-color: #2a0134; font-size: 20px; color: white; font-weight: bolder; text-align: center;">Adolph T. Resources Nigeria Limited student Database</h1>
-            <div style="height: 400px; margin: 20px; border: 1px solid #2a0134;"></div>
-        </div>
-    </div>
+         <?php
+echo '<div id="defaultDiv">
+<div>
+<h1 class="header">Adolph T. Resources Nigeria Limited Student Database</h1>
+    <div class="certificates-container">'; // Start certificates container
+
+// Output data of each row
+while ($row = $result->fetch_assoc()) {
+// Start a certificate container
+echo '<div class="certificate-details">';
+echo "<p><strong>First Name:</strong> " . $row["first_name"] . "</p>";
+echo "<p><strong>Middle Name:</strong> " . $row["middle_name"] . "</p>";
+echo "<p><strong>Last Name:</strong> " . $row["last_name"] . "</p>";
+echo "<p><strong>Address:</strong> " . $row["address"] . "</p>";
+echo "<p><strong>City:</strong> " . $row["city"] . "</p>";
+echo "<p><strong>State:</strong> " . $row["state"] . "</p>";
+echo "<p><strong>Country:</strong> " . $row["country"] . "</p>";
+echo "<p><strong>Date of Issuance:</strong> " . $row["date_of_issuance"] . "</p>";
+echo "<p><strong>Phone Number 1:</strong> " . $row["phone_number1"] . "</p>";
+echo "<p><strong>Phone Number 2:</strong> " . $row["phone_number2"] . "</p>";
+echo "<p><strong>Skill Learnt:</strong> " . $row["skill_learnt"] . "</p>";
+echo "<p><strong>Certificate number:</strong> " . $row["hash_field"] . "</p>";
+// End the certificate container
+echo '</div>';
+}
+
+echo '</div></div></div>'; // End certificates container and defaultDiv
+
+// Close the database connection
+$conn->close();
+?>
     <div id="postDiv" style="display: none;">
         <section class="p-6 dark:bg-[#2a01348b] dark:text-gray-50"> 
             <form action="post_upload.php" method="post" autocomplete="off" enctype="multipart/form-data" class="container flex flex-col mx-auto space-y-12">
@@ -315,19 +366,34 @@
       </span>
     </div>
   </footer>
-  <script>
 
-    const toggleMenu = () => {
-        const menu = document.getElementById("ul");
-        menu.style.height = menu.style.height === "0px" ? "auto" : "0px";
-    };
+
+
+
+
+  </div>
+  <script>
+let isMenuOpen = false;
+
+const toggleMenu = () => {
+    const menu = document.getElementById("ul");
     
-    const closeMenu = () => {
-        const menu = document.getElementById("ul");
+    if (!isMenuOpen) {
+        menu.style.height = "auto";
+        isMenuOpen = true;
+    } else {
         menu.style.height = "0px";
-    };
-      </script>
-  
+        isMenuOpen = false;
+    }
+};
+
+const closeMenu = () => {
+    const menu = document.getElementById("ul");
+    menu.style.height = "0px";
+    isMenuOpen = false;
+};
+</script>
+
     <script src="index.js"></script>
 </body>
 </html>

@@ -44,8 +44,12 @@ $imagePath = $uploadedFilePath;
         $stmt->bind_param("ss", $imagePath, $description);
 
         if ($stmt->execute()) {
-            echo "Image uploaded and data inserted successfully!";
-            echo '<script>setTimeout(function() { window.location = "admin.html"; }, 2000);</script>';
+            echo '<div style="font-size :25px;color:purple;">';
+               echo "Image uploaded successfully!";
+            echo '<script>setTimeout(function() { window.location = "min.php"; }, 2000);</script>';
+        
+            echo '<br>Redirecting..........';
+            echo '</div>';
         } else {
             echo "Error: " . $stmt->error;
         }

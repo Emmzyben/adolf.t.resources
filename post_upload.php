@@ -46,9 +46,12 @@ $stmt = $mysqli->prepare($insertSql);
 $stmt->bind_param("sss", $postTitle, $postContent, $imagePath);
 
 if ($stmt->execute()) {
+    echo '<div style="font-size :25px;color:purple;">'; 
     echo "Post and image uploaded successfully!";
-    echo '<script>setTimeout(function() { window.location = "admin.html"; }, 2000);</script>';
-} else {
+    echo '<script>setTimeout(function() { window.location = "min.php"; }, 5000);</script>';
+    echo '<br>Redirecting..........';
+    echo '</div>';
+ } else {
     echo "Error: " . $stmt->error;
 }
 

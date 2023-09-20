@@ -1,3 +1,34 @@
+<?php
+$servername = 'localhost';
+$username = "root";
+$password = "";
+$database = "adolph.t database";
+
+// Create a database connection
+$connection = mysqli_connect($servername, $username, $password, $database);
+
+// Check the connection
+if (!$connection) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+// Modify the SQL query to retrieve posts sorted by the latest post
+$sql = "SELECT * FROM posts ORDER BY post_timestamp DESC";
+
+// Execute the query
+$result = mysqli_query($connection, $sql);
+
+// Check if there are results
+if (!$result) {
+    die("Query failed: " . mysqli_error($connection));
+}
+
+// Rest of your code to display the posts...
+?>
+
+
+
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -48,8 +79,40 @@
 #dropdown:hover {
   display: block;
 }
-
-
+img {
+            max-width: 500px;
+            max-height: 300px;
+        }
+        .post-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+         
+        }
+        #cool{
+          border: 1px solid purple;
+          margin: 20px;
+          border-radius: 7px;
+          padding: 20px;
+          color: black;
+        }
+        #cooler{
+          margin-bottom: 30px;
+        }
+        #color{
+          color: purple;
+        }
+ul li{
+  list-style-type: none;
+}
+#topper{
+  margin-top: 20px;
+  background-color:  #2a0134;
+  color: white;
+  padding: 10px;
+  font-weight: bold;
+}
    </style>
 </head>
 <body>
@@ -75,19 +138,45 @@
         </div>
       
         <div>
-          <ul id="ul">
-            <li><a class="hover:text-[#fe5000] cursor-pointer text-[#2a0134]" href="index.html">Home</a></li>
-            <li><a class="hover:text-[#fe5000] cursor-pointer text-[#2a0134]" href="about.html">About</a></li>
-            <li><a class="hover:text-[#fe5000] cursor-pointer text-[#2a0134]" href="gallery.html">Gallery</a></li>
-            <li><a class="hover:text-[#fe5000] cursor-pointer text-[#2a0134]" href="updates.html">Updates</a></li>
-            <li><a class="hover:text-[#fe5000] cursor-pointer text-[#2a0134]" href="certificate-verification.html" onclick="closeMenu()">Certificate verification</a></li>
-            <li>
-                <a href="contact.html">
-                    <button class="items-center bg-[#FF595A] border-0 py-2 px-6 focus:outline-none 
-                    hover:bg-[#fe5000] rounded text-[#001233] mt-4 md:mt-0 font-bold">Contact us</button>
-                </a>
-            </li>
-        </ul>
+        <ul id="ul">
+                <li><a class="hover:text-[#fe5000] cursor-pointer text-[#2a0134]" href="index.html">Home</a></li>
+                <li><a class="hover:text-[#fe5000] cursor-pointer text-[#2a0134]" href="about.html">About</a></li>
+                <li class="dropdown-item">
+                  Services
+                  <ul class="sub-menu">
+                    <li><a id="hovs" href='scafolding.html'>Scaffolding</a></li>
+                    <li><a id="hovs" href='training.html'>Scaffolding training</a></li>
+                    <li><a id="hovs" href='safehouse.html'>Safehouse pressurized habitat</a></li>
+                    <li><a id="hovs" href='maintanance.html'>Maintenance and Construction Support</a></li>
+                    <li><a id="hovs" href='renting.html'>Renting of equipment and procurement</a></li>
+                  </ul>
+                </li>
+                <script>function toggleSubMenu() {
+                  const subMenu = document.querySelector('.sub-menu');
+                  subMenu.classList.toggle('open');
+                }
+                
+                function handleSubMenuItemClick() {
+                  closeMenu(); // Call closeMenu when a submenu item is clicked
+                }
+                
+                document.querySelector('.dropdown-item').addEventListener('click', toggleSubMenu);
+                const subMenuLinks = document.querySelectorAll('.sub-menu a');
+                
+                subMenuLinks.forEach((link) => {
+                  link.addEventListener('click', handleSubMenuItemClick);
+                });
+                </script>
+                <li><a class="hover:text-[#fe5000] cursor-pointer text-[#2a0134]" href="gallery.php">Gallery</a></li>
+                <li><a class="hover:text-[#fe5000] cursor-pointer text-[#2a0134]" href="updates.php">Updates</a></li>
+                <li><a class="hover:text-[#fe5000] cursor-pointer text-[#2a0134]" href="certificate-verification.html" onclick="closeMenu()">Certificate verification</a></li>
+                <li>
+                    <a href="contact.html">
+                        <button class="items-center bg-[#FF595A] border-0 py-2 px-6 focus:outline-none 
+                        hover:bg-[#fe5000] rounded text-[#001233] mt-4 md:mt-0 font-bold">Contact us</button>
+                    </a>
+                </li>
+            </ul>
         </div>
       </header>
 
@@ -110,8 +199,8 @@
         </div>
         
         
-        <a class="mr-5 cursor-pointer" id="hover" href="gallery.html">Gallery</a>
-        <a class="mr-5 cursor-pointer" id="hover" href="updates.html">Updates</a>
+        <a class="mr-5 cursor-pointer" id="hover" href="gallery.php">Gallery</a>
+        <a class="mr-5 cursor-pointer" id="hover" href="updates.php">Updates</a>
         <a class="mr-5 cursor-pointer" id="hover" href="certificate-verification.html">Certificate verification</a>
       
         <a href="contact.html">
@@ -123,18 +212,30 @@
 
 
 <!-- content -->
-<div style="height: 600px;overflow: auto;" id="body">
-
-    <div class="loader">
- _
+<div class="post-container"> 
+        <h1 id="topper">Recent Posts and updates</h1>
+        <ul>
+            <?php
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo "<li  id='cool'>";
+                echo "<div id='cooler'>";
+                echo "<h1 id='color'><b>" . $row['post_title'] . "</b></h1>";
+                echo "<p>" . $row['post_content'] . "</p>";
+                echo "</div>";
+                if (!empty($row['image_path'])) {
+                    echo "<img src='" . $row['image_path'] . "' alt='Post Image'>";
+                }
+                echo "<p>Posted on: " . $row['post_timestamp'] . "</p>"; 
+                echo "</li>";
+            }
+            ?>
+        </ul>
     </div>
-    coming soon.....
-    <script src="script.js"></script>
 
-
-
-</div>
-
+    <?php
+    // Close the database connection
+    mysqli_close($connection);
+    ?>
 
   
 
@@ -185,17 +286,27 @@
     </div>
   </footer>
   <script>
+let isMenuOpen = false;
 
-    const toggleMenu = () => {
-        const menu = document.getElementById("ul");
-        menu.style.height = menu.style.height === "0px" ? "auto" : "0px";
-    };
+const toggleMenu = () => {
+    const menu = document.getElementById("ul");
     
-    const closeMenu = () => {
-        const menu = document.getElementById("ul");
+    if (!isMenuOpen) {
+        menu.style.height = "auto";
+        isMenuOpen = true;
+    } else {
         menu.style.height = "0px";
-    };
-      </script>
+        isMenuOpen = false;
+    }
+};
+
+const closeMenu = () => {
+    const menu = document.getElementById("ul");
+    menu.style.height = "0px";
+    isMenuOpen = false;
+};
+</script>
+
     <script src="index.js"></script>
 </body>
 </html>
