@@ -182,25 +182,38 @@
                 </p>
             </div>
         </div>
-        <form novalidate class="flex flex-col py-8 space-y-6 md:py-0 md:px-6" style="margin-top: 20px;border: 1px solid rgb(40, 3, 40);padding: 20px;border-radius: 8px;">
-            <label class="block">
-                <span class="mb-1">Full name</span>
-                <input type="text" class="block w-full rounded-md shadow-sm focus:ring focus:ri focus:ri" style="border: 1px solid #001233;" />
-            </label>
-            <label class="block">
-                <span class="mb-1">Telephone</span>
-                <input type="number" class="block w-full rounded-md shadow-sm focus:ring focus:ri focus:ri" style="border: 1px solid #001233;" />
-            </label>
-            <label class="block">
-                <span class="mb-1">Email address</span>
-                <input type="email" class="block w-full rounded-md shadow-sm focus:ring focus:ri focus:ri" style="border: 1px solid #001233;" />
-            </label>
-            <label class="block">
-                <span class="mb-1">Message</span>
-                <textarea rows="3" class="block w-full rounded-md focus:ring focus:ri focus:ri" style="border: 1px solid #001233;"></textarea>
-            </label>
-            <button type="button" class="self-center px-8 py-3 text-lg rounded focus:ring hover:ring focus:ri dark:bg-[#2a0134] dark:text-[white] focus:ri hover:ri">Submit</button>
-        </form>
+        <form novalidate class="flex flex-col py-8 space-y-6 md:py-0 md:px-6" style="margin-top: 20px; border: 1px solid rgb(40, 3, 40); padding: 20px; border-radius: 8px;">
+          <label class="block">
+              <span class="mb-1">Full name</span>
+              <input type="text" id="fullName" class="block w-full rounded-md shadow-sm focus:ring focus:ri focus:ri" style="border: 1px solid #001233;" />
+          </label>
+          <label class="block">
+              <span class="mb-1">Telephone</span>
+              <input type="number" id="telephone" class="block w-full rounded-md shadow-sm focus:ring focus:ri focus:ri" style="border: 1px solid #001233;" />
+          </label>
+          <label class="block">
+              <span class="mb-1">Email address</span>
+              <input type="email" id="emailAddress" class="block w-full rounded-md shadow-sm focus:ring focus:ri focus:ri" style="border: 1px solid #001233;" />
+          </label>
+          <label class="block">
+              <span class="mb-1">Message</span>
+              <textarea id="message" rows="3" class="block w-full rounded-md focus:ring focus:ri focus:ri" style="border: 1px solid #001233;"></textarea>
+          </label>
+          <button type="button" id="submitBtn" class="self-center px-8 py-3 text-lg rounded focus:ring hover:ring focus:ri dark:bg-[#2a0134] dark:text-[white] focus:ri hover:ri">Submit</button>
+      </form>
+      <script>
+        document.getElementById('submitBtn').addEventListener('click', function() {
+            const fullName = document.getElementById('fullName').value;
+            const telephone = document.getElementById('telephone').value;
+            const emailAddress = document.getElementById('emailAddress').value;
+            const message = document.getElementById('message').value;
+    
+            const mailtoLink = `mailto:adolph.t.resources@gmail.com?subject=Form Submission&body=Full%20Name:%20${fullName}%0D%0ATelephone:%20${telephone}%0D%0AEmail:%20${emailAddress}%0D%0AMessage:%20${message}`;
+    
+            window.location.href = encodeURI(mailtoLink);
+        });
+    </script>
+          
     </div>
 </section>
 
